@@ -12,4 +12,4 @@ callback = function (err) {
   }
 }
 fse.copy(inputFilename, outputFilename)
-    .catch(callback)
+  .catch(callback)
