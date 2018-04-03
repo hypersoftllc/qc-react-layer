@@ -7,9 +7,9 @@
 
 [![npm badge][npm-badge-png]][package-url]
 
-A React component that renders a div with the semantics of representing a layer.
-Layers are [Blocks][qc-react-block] that are designed to be stacked.  Each layer
-starts a new [stacking context][mdn-stacking-context].
+A React component that renders a `div` with the semantics of representing a
+layer.  Layers are [Blocks][qc-react-block] that are designed to be stacked.
+Each layer starts a new [stacking context][mdn-stacking-context].
 
 
 ## Installation
@@ -42,6 +42,7 @@ import './HomePage.css'
 
 export default class HomePage extends React.Component {
   render() {
+    const { dialogs, drawers, messages } = this.props;
     return (
       <Page className="HomePage">
         <Layer className="MainLayer">
@@ -68,11 +69,6 @@ export default class HomePage extends React.Component {
 
 ```css
 /* HomePage.css */
-.HomePage {
-  /* The following two properties establish a stacking context. */
-  position: relative;
-  z-index: 0;
-}
 .DrawersLayer {
   z-index: 1;
 }
@@ -83,6 +79,29 @@ export default class HomePage extends React.Component {
   z-index: 3;
 }
 ```
+
+**Just Using `Layer` CSS**
+
+The key to the `Layer` component is in the CSS — not the JavaScript.  So, we
+need to include the `Layer` CSS.  Also, because `Layer` is a `Block` component,
+we need to include its CSS too.
+
+```jsx
+import React from 'react'
+
+import '@qc/react-block/dist/styles/Block.css'
+import '@qc/react-layer/dist/styles/Layer.css'
+
+
+export default function MessageLayer(props) {
+  return (
+    <div className="Block Layer">
+      ...
+    </div>
+  )
+}
+```
+
 
 ## Stacking Context & `z-index`
 
@@ -140,6 +159,8 @@ plugin][babel-obj-sprd-txm].
 ISC
 
 
+[babel]: https://babeljs.io/
+[babel-obj-sprd-txm]: https://babeljs.io/docs/plugins/transform-object-rest-spread/
 [coverage-image]: https://coveralls.io/repos/github/hypersoftllc/qc-react-layer/badge.svg?branch=master
 [coverage-url]: https://coveralls.io/github/hypersoftllc/qc-react-layer?branch=master
 [downloads-image]: http://img.shields.io/npm/dm/@qc/react-layer.svg
