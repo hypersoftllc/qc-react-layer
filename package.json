@@ -1,0 +1,88 @@
+{
+  "name": "@qc/react-layer",
+  "version": "0.0.0-alpha",
+  "description": "A React component that renders a div with the semantics of representing a layer.",
+  "keywords": [
+    "block",
+    "component",
+    "div",
+    "layer",
+    "react",
+    "semantic",
+    "stacked"
+  ],
+  "author": {
+    "name": "Danny Hurlburt",
+    "url": "https://github.com/dhurlburtusa"
+  },
+  "homepage": "https://github.com/hypersoftllc/qc-react-layer",
+  "license": "ISC",
+  "browserslist": [
+    "> 0.5%"
+  ],
+  "engines": {
+    "node": ">=7.4.0",
+    "npm": ">=4.0.0"
+  },
+  "files": [
+    "dist/",
+    "es/",
+    "lib/",
+    "src/"
+  ],
+  "main": "lib/Layer.js",
+  "module": "es/Layer.js",
+  "bugs": {
+    "url": "https://github.com/hypersoftllc/qc-react-layer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hypersoftllc/qc-react-layer.git"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src/"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:cjs && npm run build:css && npm run build:es",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src -d lib/",
+    "build:css": "node scripts/build.js",
+    "build:es": "cross-env BABEL_ENV=es babel src -d es/",
+    "clean": "rimraf coverage/ dist/ es/ lib/",
+    "coverage": "jest --coverage",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "lint": "eslint src/",
+    "prepublishOnly": "npm run clean && npm run lint && npm run coverage && npm run build",
+    "test": "jest --watch",
+    "travisci": "npm run coverage"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "7.2.3",
+    "babel-jest": "20.0.3",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "coveralls": "^3.0.0",
+    "cross-env": "^5.1.4",
+    "eslint": "4.10.0",
+    "eslint-plugin-react": "^7.4.0",
+    "fs-extra": "^3.0.1",
+    "jest": "20.0.4",
+    "prop-types": "^15.6.0",
+    "react": ">=15.x",
+    "react-test-renderer": ">15.x",
+    "rimraf": "^2.6.2"
+  },
+  "peerDependencies": {
+    "prop-types": ">=15.x",
+    "react": ">=15.x"
+  },
+  "dependencies": {
+    "@qc/react-block": "^0.2.1"
+  }
+}

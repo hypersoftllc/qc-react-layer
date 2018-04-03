@@ -1,0 +1,9 @@
+.Layer {
+  /* Backup */
+  isolation: isolate;
+  /* Backup */
+  -webkit-overflow-scrolling: touch;
+  /* Establish a stacking context in any browser. */
+  position: relative;
+  z-index: 0;
+}
