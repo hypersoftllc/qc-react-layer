@@ -1,0 +1,39 @@
+{
+  "env": {
+    "cjs": {
+      "ignore": [
+        "__tests__",
+      ],
+      "plugins": [
+        "transform-object-rest-spread",
+      ],
+      "presets": [
+        "env",
+        "react",
+      ],
+    },
+    "es": {
+      "ignore": [
+        "__tests__",
+      ],
+      "plugins": [
+        "transform-object-rest-spread",
+      ],
+      "presets": [
+        ["env", {
+          "modules": false,
+        }],
+        "react",
+      ],
+    },
+    "test": {
+      "plugins": [
+        "transform-object-rest-spread",
+      ],
+      "presets": [
+        "env",
+        "react",
+      ],
+    },
+  },
+}
