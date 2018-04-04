@@ -129,7 +129,7 @@ module.exports = {
      * Stylistic Issues
      */
     "array-bracket-spacing": [2, "never"],
-    "brace-style": [2, "1tbs", { "allowSingleLine": true }],
+    "brace-style": [2, "stroustrup", { "allowSingleLine": true }],
     "camelcase": [2, {"properties": "never"}],
     "comma-spacing": 2,
     "comma-style": 2,
