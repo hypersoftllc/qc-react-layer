@@ -1,6 +1,6 @@
 {
   "name": "@qc/react-layer",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A React component that renders a div with the semantics of representing a layer.",
   "keywords": [
     "block",
