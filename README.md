@@ -36,7 +36,9 @@ import React from 'react'
 import Layer from '@qc/react-layer'
 import Page from '@qc/react-page'
 
+import '@qc/react-block/dist/styles/Block.css'
 import '@qc/react-layer/dist/styles/Layer.css'
+import '@qc/react-page/umd/react-page.css'
 import './HomePage.css'
 
 
@@ -103,6 +105,63 @@ export default function MessageLayer(props) {
 ```
 
 
+## Usage with `@qc/react-page`
+
+An application can be thought of as a set of pages, sometimes known as screens.
+Within each page may exist several layers.  Layers may be explicit or implicit.
+An example of an explicit layer is when a React component exists for the purpose
+of representing a layer.  That is the purpose of this library.  If the layer is
+not explicit, then it is implicit.  The main downfall of implicit layers is that
+it is not clear where it begins and where it ends.
+
+There always exists at least one layer, the main layer.  This layer
+represents/contains the main content of the page.  There may be times when a
+need arises where a page has multiple layers.  A classic example is when a modal
+dialog is displayed.  Where the dialog is displayed is in a layer, whether
+implicit or explicit, above the main layer.  In the same page, another layer
+may exist where notification messages are shown.  This layer is usually above
+the dialog layer so that messages will be seen while a dialog is shown.
+
+```jsx
+import React from 'react'
+import Layer from '@qc/react-layer'
+import Page from '@qc/react-page'
+
+
+class HomePage extends React.Component {
+  render() {
+    const { showLightbox, showLoginModal } = this.state;
+    return (
+      <Page className="HomePage">
+        <Layer className="MainLayer">
+          <Page.Head>
+            {/* Insert head components here. */}
+          </Page.Head>
+          <Page.Body>
+            {/* Insert main components here. */}
+          </Page.Body>
+          <Page.Foot>
+            {/* Insert foot components here. */}
+          </Page.Foot>
+        </Layer>
+        {
+          (showLightbox || showLoginModal) &&
+          <Layer className="DialogLayer">
+            {/* Insert modals here. */}
+            { showLightbox && <Lightbox/> }
+            { showLoginModal && <LoginModal/> }
+          </Layer>
+        }
+        <Layer className="NotificationLayer">
+          {/* Insert notification components here. */}
+        </Layer>
+      </Page>
+    )
+  }
+}
+```
+
+
 ## Stacking Context & `z-index`
 
 An HTML document has one or more [stacking context][mdn-stacking-context].
@@ -149,6 +208,13 @@ The source is using object spread syntax.  In order to transpile it with
 plugin][babel-obj-sprd-txm].
 
 
+## Other Packages from [QC]
+
+* [@qc/react-block][qc-react-block]
+* [@qc/react-conditionals][qc-react-conditionals]
+* [@qc/react-page][qc-react-page]
+
+
 ## Maintainers
 
 - [Danny Hurlburt](https://github.com/dhurlburtusa)
@@ -170,6 +236,9 @@ ISC
 [package-url]: https://npmjs.org/package/@qc/react-layer
 [mdn-stacking-context]: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
 [npm-badge-png]: https://nodei.co/npm/@qc/react-layer.png?downloads=true&stars=true
+[qc]: https://www.npmjs.com/~qc
 [qc-react-block]: https://www.npmjs.com/package/@qc/react-block
+[qc-react-conditionals]: https://www.npmjs.com/package/@qc/react-conditionals
+[qc-react-page]: https://www.npmjs.com/package/@qc/react-page
 [travis-svg]: https://travis-ci.org/hypersoftllc/qc-react-layer.svg?branch=master
 [travis-url]: https://travis-ci.org/hypersoftllc/qc-react-layer
